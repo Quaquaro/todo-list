@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { of as observableOf } from 'rxjs';
+import { ListOverview } from './ListOverview';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.css'],
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
+  isVisible = true;
 
-  constructor() { }
+  readonly lists$ = observableOf<ListOverview[]>([
+    { id: 1, title: 'Baumhaus bauen' },
+    { id: 2, title: 'Renovieren' },
+    { id: 3, title: 'Urlaub' },
+  ]);
 
-  ngOnInit() {
+  toggle(): void {
+    this.isVisible = !this.isVisible;
   }
+  constructor() {}
 
+  ngOnInit() {}
 }
