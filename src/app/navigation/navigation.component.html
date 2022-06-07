@@ -1,3 +1,20 @@
-<p>
-  navigation works!
-</p>
+<mat-sidenav-container>
+  <mat-sidenav [opened]="isVisible">
+    <form
+     (ngSubmit)="create(listForm)"
+     #listForm="ngForm">
+
+    </form>
+    <mat-nav-list>
+      <a
+        mat-list-item
+        *ngFor="let list of lists$ | async"
+        routerLink="lists/{{ list.id }}"
+        >{{ list.title }}</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    Hauptbereich
+  </mat-sidenav-content>
+</mat-sidenav-container>
